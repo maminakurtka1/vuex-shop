@@ -9,10 +9,10 @@
 
     <div v-show="products.length">
       <ul class="product_list">
-        <li v-for="product in products" :key="product.uid" class="product_item">
+        <li v-for="product in products" :key="product.id" class="product_item">
           <img :src="product.src" class="item_image" />
-          <span class="item_name">{{ product.dish }}</span>
-          <span class="item_price">{{ product.price + " руб." }}</span>
+          <span class="item_name">{{ product.title }}</span>
+          <span class="item_price">{{ product.price + " $" }}</span>
 
           <div class="product_actions">
             <button

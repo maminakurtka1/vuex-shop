@@ -8,9 +8,9 @@
 
     <div v-show="products.length">
       <div class="cart_list">
-        <div v-for="p in products" :key="p.uid">
+        <div v-for="p in products" :key="p.id">
           <div class="cart_item">
-            <span>{{ p.dish }}</span>
+            <span>{{ p.title }}</span>
             <span>Quantity: {{ p.quantity }}</span>
             <span> {{ p.price * p.quantity }} $ </span>
             <div>
@@ -59,11 +59,11 @@ export default {
     checkout() {
       const string = this.products
         .map((item) => {
-          return item.dish + " " + item.quantity + " шт.";
+          return item.title + " " + item.quantity + " шт.";
         })
         .join("\n");
 
-      alert(string + "\nОбщая стоимость " + this.total + " руб.");
+      alert(string + "\nОбщая стоимость " + this.total + " $");
     },
   },
 };

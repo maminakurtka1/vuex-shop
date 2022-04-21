@@ -1,9 +1,20 @@
 <template>
   <div>
     <ul class="product_list">
-      <li v-for="product in products" :key="product.uid" class="product_item">
+      <button
+        type="button"
+        class="button item_button add_button"
+        @click="toggleSorted()"
+      >
+        {{
+          getSortBy() === "price"
+            ? "Сортировать по имени"
+            : "Сортировать по цене"
+        }}
+      </button>
+      <li v-for="product in products" :key="product.id" class="product_item">
         <img :src="product.src" class="item_image" />
-        <span class="item_name">{{ product.dish }}</span>
+        <span class="item_name">{{ product.title }}</span>
         <span class="item_price">{{ product.price + " $" }}</span>
 
         <div class="product_actions">
@@ -93,12 +104,13 @@ export default {
     ...mapState(["products"]),
   },
   methods: {
-    ...mapActions(["getProducts"]),
+    ...mapActions(["getProducts", "getSortBy"]),
     ...mapMutations([
       "addToLiked",
       "removeFromLiked",
       "addToCart",
       "removeFromCart",
+      "toggleSorted",
     ]),
   },
   async created() {

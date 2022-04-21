@@ -11,6 +11,9 @@ const state = {
     6123150777, 6126039472, 6126040354, 6128597660, 6134992334, 6136170572,
     6136172483, 6140906765, 6142673815, 6142681673, 6142683276, 6148226736,
   ],
+  sortBy: 'title',
+  username: "",
+  password: ""
 };
 
 const getters = {
@@ -34,12 +37,13 @@ const getters = {
   itemsInLiked(state, getters) {
     return getters.likedProducts.length;
   },
+
 };
 
 const actions = {
   async getProducts({ commit }) {
     let response = await fetch(
-      "https://random-data-api.com/api/food/random_food?size=30"
+      "http://localhost:8000/books"
     );
     if (response.ok) {
       let json = await response.json();
@@ -48,18 +52,48 @@ const actions = {
       alert("Ошибка HTTP: " + response.status);
     }
   },
+
+  async login() {
+
+
+    let response = await fetch("http://localhost:8000/customers/login", {
+      method: 'POST', body: JSON.stringify({
+        phone: localStorage.getItem("username"),
+        password: localStorage.getItem("password")
+      }),
+      headers: { 'Content-type': 'application/json; charset=UTF-8' }
+    })
+
+    if (response.ok) {
+      let json = await response.json();
+      console.log(json)
+    } else {
+      alert("Ошибка HTTP: " + response.status);
+    }
+  },
+
+  getSortBy(state) {
+    return state.state.sortBy;
+  }
 };
 
 const mutations = {
   allProducts: (state, payload) => {
     payload.forEach((el) => {
-      el.price = Math.floor(Math.random() * 5 + 10);
       el.quantity = 0;
       let rand = Math.floor(Math.random() * state.images.length);
       el.src = "images/" + state.images[rand] + ".webp";
       el.liked = "no";
     });
-    state.products = payload;
+    if (state.sortBy === "title") {
+      state.products = payload.sort((a, b) => {
+        if (a.title < b.title) return -1
+        return 1
+      });
+    }
+    else if (state.sortBy === "price") {
+      state.products = payload.sort((a, b) => a.price - b.price)
+    }
   },
 
   addToCart: (state, product) => {
@@ -86,6 +120,26 @@ const mutations = {
     const item = state.products.find((p) => p.id === product.id);
     item.liked = "no";
   },
+  toggleSorted: (state) => {
+    let x = localStorage.getItem('hui');
+    console.log('x = ', x);
+    // console.log('hui = ')
+    if (state.sortBy === 'title') {
+      state.sortBy = 'price'
+    } else if (state.sortBy === 'price') {
+      state.sortBy = 'title'
+    }
+    if (state.sortBy === "title") {
+      state.products = state.products.sort((a, b) => {
+        if (a.title < b.title) return -1
+        return 1
+      });
+    }
+    else if (state.sortBy === "price") {
+      state.products = state.products.sort((a, b) => a.price - b.price)
+    }
+  }
+
 };
 
 export default new Vuex.Store({
