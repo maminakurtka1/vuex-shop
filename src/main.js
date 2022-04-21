@@ -5,12 +5,14 @@ import App from './App.vue'
 import Products from './components/Products.vue'
 import Cart from './components/Cart.vue'
 import Liked from './components/Liked.vue'
+import Main from './components/Main.vue'
 
 Vue.use(VueRouter)
 
 // Define routes
 const routes = [
-  { path: '/', component: Products },
+  { path: '/', component: Main },
+  { path: '/products', component: Products },
   { path: '/cart', component: Cart },
   { path: '/liked', component: Liked },
 ]

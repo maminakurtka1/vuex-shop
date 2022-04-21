@@ -3,7 +3,7 @@
     <h3>Cart</h3>
     <div v-show="!products.length">
       <p>Your cart is empty!</p>
-      <router-link to="/">Continue shopping</router-link>
+      <router-link to="/"> <button>Continue shopping</button></router-link>
     </div>
 
     <div v-show="products.length">
