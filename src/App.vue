@@ -6,14 +6,19 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
+import NavBar from "./components/NavBar.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     NavBar,
   },
-}
+  computed: {
+    currentRoute() {
+      return this.$router.path == "/";
+    },
+  },
+};
 </script>
 
 <style>

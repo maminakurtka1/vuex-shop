@@ -15,6 +15,7 @@
       <li v-for="product in products" :key="product.id" class="product_item">
         <img :src="product.src" class="item_image" />
         <span class="item_name">{{ product.title }}</span>
+        <span class="author">{{ product.author }}</span>
         <span class="item_price">{{ product.price + " $" }}</span>
 
         <div class="product_actions">
@@ -96,7 +97,6 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-
 export default {
   name: "products",
 
@@ -138,6 +138,10 @@ export default {
   margin-bottom: 10px;
 }
 .item_name {
+  padding: 10px;
+  font-weight: bold;
+}
+.author {
   padding: 10px;
   font-weight: bold;
 }

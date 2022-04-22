@@ -4,7 +4,7 @@
 
     <div v-show="!products.length">
       <p>You don't have any favorite products yet!</p>
-      <router-link to="/">Go to catalog</router-link>
+      <router-link to="/products">Go to catalog</router-link>
     </div>
 
     <div v-show="products.length">

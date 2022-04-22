@@ -3,7 +3,9 @@
     <h3>Cart</h3>
     <div v-show="!products.length">
       <p>Your cart is empty!</p>
-      <router-link to="/"> <button>Continue shopping</button></router-link>
+      <router-link to="/products">
+        <button>Continue shopping</button></router-link
+      >
     </div>
 
     <div v-show="products.length">
@@ -45,8 +47,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
-
+import { mapGetters, mapMutations, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters({
@@ -55,10 +56,12 @@ export default {
     }),
   },
   methods: {
+    ...mapActions(["add_product_to_bill"]),
     ...mapMutations(["addToCart", "removeFromCart"]),
     checkout() {
       const string = this.products
         .map((item) => {
+          this.add_product_to_bill(item.id, item.quantity);
           return item.title + " " + item.quantity + " шт.";
         })
         .join("\n");

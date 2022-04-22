@@ -53,9 +53,25 @@ const actions = {
     }
   },
 
+  async add_product_to_bill(product_id, count) {
+    let response = await fetch("http://localhost:8000/bills/add_product", {
+      method: 'POST', body: JSON.stringify({
+        product_id: product_id,
+        count: count,
+        user_id: localStorage.getItem("user_id")
+      }),
+      headers: { 'Content-type': 'application/json; charset=UTF-8' }
+    })
+
+    if (response.ok) {
+      let json = await response.json();
+      json
+    } else {
+      alert("Ошибка HTTP: " + response.status);
+    }
+  },
+
   async login() {
-
-
     let response = await fetch("http://localhost:8000/customers/login", {
       method: 'POST', body: JSON.stringify({
         phone: localStorage.getItem("username"),
@@ -66,7 +82,14 @@ const actions = {
 
     if (response.ok) {
       let json = await response.json();
-      console.log(json)
+      if (json.id != 0) {
+        localStorage.setItem("user_id", json.id);
+      }
+      else {
+        localStorage.removeItem("user_id", json.id);
+        localStorage.removeItem('username')
+        localStorage.removeItem('password')
+      }
     } else {
       alert("Ошибка HTTP: " + response.status);
     }

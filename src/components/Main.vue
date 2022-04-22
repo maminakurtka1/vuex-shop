@@ -12,7 +12,13 @@
         placeholder="Password"
       />
       <hr />
-      <button type="submit" @click="f(username, password)">Login</button>
+      <button
+        type="submit"
+        class="button item_button add_button"
+        @click="f(username, password)"
+      >
+        Login
+      </button>
     </form>
   </div>
 </template>
@@ -33,7 +39,55 @@ export default {
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
       this.login();
+      console.log(localStorage.getItem("user_id"));
+      if (
+        (localStorage.getItem("user_id") != 0) &
+        (localStorage.getItem("user_id") != null)
+      ) {
+        this.$router.push("/products");
+      } else {
+        console.log("WRONG WRONG WRONG");
+      }
     },
   },
 };
 </script>
+
+<style scoped>
+.button {
+  border-radius: 4px;
+  background: #35a2c7;
+  color: #fff;
+  border: none;
+}
+.button:hover {
+  border: none;
+  cursor: pointer;
+}
+.item_button {
+  align-self: flex-start;
+  padding: 5px;
+  margin: 10px;
+}
+.product_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart_button,
+.remove_button {
+  width: 30px;
+  height: 30px;
+}
+
+.add_button {
+  width: 120px;
+  height: 42px;
+}
+.remove_like_button,
+.like_button {
+  width: 42px;
+  height: 42px;
+  background-color: transparent;
+}
+</style>
