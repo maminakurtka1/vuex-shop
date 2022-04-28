@@ -2,6 +2,10 @@
   <div>
     <form class="login">
       <h1>Sign in</h1>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.css"
+      />
       <label>User name</label>
       <input required v-model="username" type="text" placeholder="Snoopy" />
       <label>Password</label>
