@@ -6,6 +6,7 @@ import Products from './components/Products.vue'
 import Cart from './components/Cart.vue'
 import Liked from './components/Liked.vue'
 import Main from './components/Main.vue'
+import Registration from './components/Registration.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,7 @@ const routes = [
   { path: '/products', component: Products },
   { path: '/cart', component: Cart },
   { path: '/liked', component: Liked },
+  { path: '/registration', component: Registration },
 ]
 
 // Register routes

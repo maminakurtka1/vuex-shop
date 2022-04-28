@@ -1,16 +1,16 @@
 <template>
   <nav class="menu">
     <div>
-      <router-link class="router-link" to="/products">Menu</router-link>
+      <router-link class="router-link" to="/products">Меню</router-link>
     </div>
     <div>
       <router-link class="router-link" to="/liked"
-        >Favorites ({{ itemsInLiked }})</router-link
+        >Избранное ({{ itemsInLiked }})</router-link
       >
     </div>
     <div>
       <router-link class="router-link" to="/cart"
-        >Cart ({{ itemsInCart }})</router-link
+        >Корзина ({{ itemsInCart }})</router-link
       >
     </div>
   </nav>

@@ -1,28 +1,24 @@
 <template>
   <div>
     <form class="login">
-      <h1>Sign in</h1>
+      <h1>Вход</h1>
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.css"
       />
-      <label>User name</label>
-      <input required v-model="username" type="text" placeholder="Snoopy" />
-      <label>Password</label>
-      <input
-        required
-        v-model="password"
-        type="password"
-        placeholder="Password"
-      />
+      <label>Телефон</label>
+      <input required v-model="username" type="text" placeholder="Телефон" />
+      <label>Пароль</label>
+      <input required v-model="password" type="password" placeholder="Пароль" />
       <hr />
       <button
         type="submit"
         class="button item_button add_button"
         @click="f(username, password)"
       >
-        Login
+        Войти
       </button>
+      <button>Регистрация</button>
     </form>
   </div>
 </template>

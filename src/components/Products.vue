@@ -3,7 +3,7 @@
     <ul class="product_list">
       <button
         type="button"
-        class="button item_button add_button"
+        class="button item_button add_button abc"
         @click="toggleSorted()"
       >
         {{
@@ -12,11 +12,19 @@
             : "Сортировать по цене"
         }}
       </button>
+
+      <button
+        type="button"
+        class="button item_button add_button qwe"
+        @click="toggleSorted()"
+      >
+        Сортировать по имени
+      </button>
       <li v-for="product in products" :key="product.id" class="product_item">
         <img :src="product.src" class="item_image" />
         <span class="item_name">{{ product.title }}</span>
         <span class="author">{{ product.author }}</span>
-        <span class="item_price">{{ product.price + " $" }}</span>
+        <span class="item_price">{{ product.price + " ₽ " }}</span>
 
         <div class="product_actions">
           <button
@@ -25,7 +33,7 @@
             class="button item_button add_button"
             @click="addToCart(product)"
           >
-            Add
+            Добавить
           </button>
           <div v-else>
             <button
@@ -184,5 +192,15 @@ export default {
   width: 42px;
   height: 42px;
   background-color: transparent;
+}
+.abc {
+  position: absolute;
+  top: 40px;
+  left: 200px;
+}
+.qwe {
+  position: absolute;
+  top: 40px;
+  left: 330px;
 }
 </style>

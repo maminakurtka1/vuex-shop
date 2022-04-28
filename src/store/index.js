@@ -104,8 +104,8 @@ const mutations = {
   allProducts: (state, payload) => {
     payload.forEach((el) => {
       el.quantity = 0;
-      let rand = Math.floor(Math.random() * state.images.length);
-      el.src = "images/" + state.images[rand] + ".webp";
+
+      el.src = "images/" + "1557469473_51038" + ".webp";
       el.liked = "no";
     });
     if (state.sortBy === "title") {

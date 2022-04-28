@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h3 class="title">Favorite products</h3>
+    <h3 class="title">Избранное</h3>
 
     <div v-show="!products.length">
-      <p>You don't have any favorite products yet!</p>
-      <router-link to="/products">Go to catalog</router-link>
+      <p>Вы еще не добавили ни один продукт в избранное!</p>
+      <router-link to="/products">Вернуться в каталог</router-link>
     </div>
 
     <div v-show="products.length">
@@ -12,7 +12,7 @@
         <li v-for="product in products" :key="product.id" class="product_item">
           <img :src="product.src" class="item_image" />
           <span class="item_name">{{ product.title }}</span>
-          <span class="item_price">{{ product.price + " $" }}</span>
+          <span class="item_price">{{ product.price + " ₽ " }}</span>
 
           <div class="product_actions">
             <button
@@ -21,7 +21,7 @@
               class="button item_button add_button"
               @click="addToCart(product)"
             >
-              Add
+              Добавить
             </button>
             <div v-else>
               <button
